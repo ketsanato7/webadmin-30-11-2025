@@ -7,6 +7,8 @@ const baseSchema = {
   value_EN: z.string().min(1, { message: "ຊື່ (ອັງກິດ)" }),
   code_LA: z.string().min(1, { message: "ລະຫັດ (ອັງກິດ)" }),
   code_EN: z.string().min(1, { message: "ລະຫັດ (ລາວ)" }),
+    enterpise_model_id: z.string().min(1, { message: "Required id" }),
+
   status: z.string().min(1, { message: "Required id" }),
 };
 

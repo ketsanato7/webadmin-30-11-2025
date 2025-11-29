@@ -1,10 +1,30 @@
-import { z } from "zod";
+import * as z from "zod";
 
- export const schema = z.object({
-    _id: z.string(),
-    id: z.string(),
-    value: z.string(),
-    province_id: z.string(),
-status: z.string(),
 
-  });
+const baseSchema = {
+  id: z.string().min(1, { message: "ລະຫັດ" }),
+  value_LA: z.string().min(1, { message: "ຊື່ (ລາວ)" }),
+  value_EN: z.string().min(1, { message: "ຊື່ (ອັງກິດ)" }),
+  code_LA: z.string().min(1, { message: "ລະຫັດ (ອັງກິດ)" }),
+  code_EN: z.string().min(1, { message: "ລະຫັດ (ລາວ)" }),
+  status: z.string().min(1, { message: "Required id" }),
+  postal_code: z.string().min(1, { message: "Required id" }),
+  province_id_master: z.string().min(1, { message: "Required id" }),
+  province_id: z.string().min(1, { message: "Required id" }),
+};
+
+const schema = z.object(baseSchema);
+
+const schema_update = schema.extend({
+  _id: z.string().min(1, { message: "ລະຫັດປະເທດ" }),
+});
+
+const schema_delete = z.object({
+  _id: z.string().min(1, { message: "ລະຫັດປະເທດ" }),
+});
+
+type schema = z.infer<typeof schema>;
+type schema_update = z.infer<typeof schema_update>;
+type schema_delete = z.infer<typeof schema_delete>;
+
+export { schema, schema_update, schema_delete };

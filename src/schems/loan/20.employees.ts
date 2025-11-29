@@ -1,13 +1,17 @@
+
 import * as z from "zod";
 
 
 const baseSchema = {
-  id: z.string().min(1, { message: "ລະຫັດ" }),
-  value_LA: z.string().min(1, { message: "ຊື່ (ລາວ)" }),
-  value_EN: z.string().min(1, { message: "ຊື່ (ອັງກິດ)" }),
-  code_LA: z.string().min(1, { message: "ລະຫັດ (ອັງກິດ)" }),
-  code_EN: z.string().min(1, { message: "ລະຫັດ (ລາວ)" }),
-  status: z.string().min(1, { message: "Required id" }),
+  id: z.string().min(1, { message: "Required id" }),
+  contact_info: z.string().min(1, { message: "Required " }),
+  education_level_id: z.string().min(1, { message: "Required " }),
+  date_of_employment: z.string().min(1, { message: "Required " }),
+  field_of_study: z.string().min(1, { message: "Required " }),  
+  personal_info_id: z.string().min(1, { message: "Required " }),
+
+status: z.string().min(1, { message: "Required id" }),
+
 };
 
 const schema = z.object(baseSchema);

@@ -1,12 +1,13 @@
 import * as z from "zod";
 
-
 const baseSchema = {
-  id: z.string().min(1, { message: "ລະຫັດ" }),
-  value_LA: z.string().min(1, { message: "ຊື່ (ລາວ)" }),
-  value_EN: z.string().min(1, { message: "ຊື່ (ອັງກິດ)" }),
-  code_LA: z.string().min(1, { message: "ລະຫັດ (ອັງກິດ)" }),
-  code_EN: z.string().min(1, { message: "ລະຫັດ (ລາວ)" }),
+  id: z.string().min(1, { message: "Required id" }),
+  category_id: z.string().min(1, { message: "Required id" }),
+  name: z.string().min(1, { message: "Required id" }),
+  collateral_no: z.string().min(1, { message: "Required id" }),
+  date_of_issue: z.string().min(1, { message: "Required id" }),
+  value: z.string().min(1, { message: "Required id" }),
+  other_details: z.string().min(1, { message: "Required id" }),
   status: z.string().min(1, { message: "Required id" }),
 };
 

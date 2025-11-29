@@ -1,6 +1,5 @@
 import * as z from "zod";
 
-
 const baseSchema = {
   id: z.string().min(1, { message: "ລະຫັດ" }),
   value_LA: z.string().min(1, { message: "ຊື່ (ລາວ)" }),

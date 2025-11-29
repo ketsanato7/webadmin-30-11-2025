@@ -1,17 +1,20 @@
+
 import * as z from "zod";
 
 
 const baseSchema = {
-  id: z.string().min(1, { message: "ລະຫັດ" }),
-  value_LA: z.string().min(1, { message: "ຊື່ (ລາວ)" }),
-  value_EN: z.string().min(1, { message: "ຊື່ (ອັງກິດ)" }),
-  code_LA: z.string().min(1, { message: "ລະຫັດ (ອັງກິດ)" }),
-  code_EN: z.string().min(1, { message: "ລະຫັດ (ລາວ)" }),
-  status: z.string().min(1, { message: "Required id" }),
+  id: z.string().min(1, { message: "Required id" }),
+  username: z.string().min(1, { message: "Required " }),
+  password: z.string().min(1, { message: "Required " }),
+  employee_id: z.string().min(1, { message: "Required " }),  
+  role_id: z.string().min(1, { message: "Required " }),
+
+status: z.string().min(1, { message: "Required id" }),
+
 };
 
 const schema = z.object(baseSchema);
-
+  
 const schema_update = schema.extend({
   _id: z.string().min(1, { message: "ລະຫັດປະເທດ" }),
 });

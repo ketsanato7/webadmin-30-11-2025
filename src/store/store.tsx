@@ -1,6 +1,5 @@
 import { createStore } from "redux";
 import reducers from "../reducers/reducers"
-import personal_info from "./1.personal_info copy"
 
 const store = createStore(reducers, {
 },

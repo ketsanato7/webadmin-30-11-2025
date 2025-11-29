@@ -1,14 +1,13 @@
 import * as z from "zod";
 
 
-const baseSchema = {
-  id: z.string().min(1, { message: "ລະຫັດ" }),
-  value_LA: z.string().min(1, { message: "ຊື່ (ລາວ)" }),
-  value_EN: z.string().min(1, { message: "ຊື່ (ອັງກິດ)" }),
-  code_LA: z.string().min(1, { message: "ລະຫັດ (ອັງກິດ)" }),
-  code_EN: z.string().min(1, { message: "ລະຫັດ (ລາວ)" }),
-  status: z.string().min(1, { message: "Required id" }),
-};
+  const baseSchema = {
+    id: z.string(),
+    borrower_id: z.string() .min(1, { message: "Required passport_no" }),
+    loan_id: z.string() .min(1, { message: "Required married_couple_id" }),
+status: z.string() .min(1, { message: "Required married_couple_id" }),
+
+  };
 
 const schema = z.object(baseSchema);
 

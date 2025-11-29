@@ -1,6 +1,5 @@
 import * as z from "zod";
 
-
 const baseSchema = {
   id: z.string().min(1, { message: "ລະຫັດ" }),
   value_LA: z.string().min(1, { message: "ຊື່ (ລາວ)" }),
@@ -8,6 +7,9 @@ const baseSchema = {
   code_LA: z.string().min(1, { message: "ລະຫັດ (ອັງກິດ)" }),
   code_EN: z.string().min(1, { message: "ລະຫັດ (ລາວ)" }),
   status: z.string().min(1, { message: "Required id" }),
+  postal_code: z.string().min(1, { message: "Required id" }),
+  country_id_master: z.string().min(1, { message: "Required id" }),
+  country_id: z.string().min(1, { message: "Required id" }),
 };
 
 const schema = z.object(baseSchema);

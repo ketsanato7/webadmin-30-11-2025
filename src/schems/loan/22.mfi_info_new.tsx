@@ -1,0 +1,53 @@
+import { z } from "zod";
+
+export const schema = z.object({
+  id: z.string().nonempty("ID is required"),
+  approved_date: z.string().optional(),
+  name_LA: z.string().optional(),
+  name_EN: z.string().optional(),
+  address: z.string().optional(),
+  house_unit: z.string().optional(),
+  house_no: z.string().optional(),
+  branches: z.string().optional(),
+  service_units: z.string().optional(),
+  employees: z.string().optional(),
+  employees_female: z.string().optional(),
+  employees_HQ: z.string().optional(),
+  employees_female_HQ: z.string().optional(),
+  tel: z.string().optional(),
+  mobile: z.string().optional(),
+  fax: z.string().optional(),
+  email: z.string().email("Invalid email").optional(),
+  whatsapp: z.string().optional(),
+  website: z.string().url("Invalid URL").optional(),
+  other_infos: z.string().optional(),
+  latitude: z.string().optional(),
+  longitude: z.string().optional(),
+});
+
+export type MFIInfo = z.infer<typeof schema>;
+
+export const formDefaultValues: MFIInfo = {
+  id: "",
+  approved_date: "",
+  name_LA: "",
+  name_EN: "",
+  address: "",
+  house_unit: "",
+  house_no: "",
+  branches: "",
+  service_units: "",
+  employees: "",
+  employees_female: "",
+  employees_HQ: "",
+  employees_female_HQ: "",
+  tel: "",
+  mobile: "",
+  fax: "",
+  email: "",
+  whatsapp: "",
+  website: "",
+  other_infos: "",
+  latitude: "",
+  longitude: "",
+};

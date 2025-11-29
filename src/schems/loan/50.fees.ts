@@ -1,13 +1,15 @@
+
 import * as z from "zod";
 
+const required = (msg = "Required id") => z.string().min(1, { message: msg });
 
 const baseSchema = {
-  id: z.string().min(1, { message: "ລະຫັດ" }),
-  value_LA: z.string().min(1, { message: "ຊື່ (ລາວ)" }),
-  value_EN: z.string().min(1, { message: "ຊື່ (ອັງກິດ)" }),
-  code_LA: z.string().min(1, { message: "ລະຫັດ (ອັງກິດ)" }),
-  code_EN: z.string().min(1, { message: "ລະຫັດ (ລາວ)" }),
-  status: z.string().min(1, { message: "Required id" }),
+  id:required(),
+  fee_name: required(),
+  fee_description:required(),
+  fee_rate:required(),
+  fee_amount:required(),
+
 };
 
 const schema = z.object(baseSchema);

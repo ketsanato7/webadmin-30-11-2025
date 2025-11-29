@@ -1,6 +1,11 @@
   * {
-  box-sizing: border-box;
+  box-sizing: border-box;  
+  font-family: "Phetsarath", "Noto Sans Lao", sans-serif !important;
 }
+body {
+  font-family: "Phetsarath", "Noto Sans Lao", sans-serif !important;
+}
+
 
 /* Create four equal columns that floats next to each other */
 .column {
@@ -8,13 +13,22 @@
   width: 25%;
   padding: 20px;
 }
-
+input{
+  width:'20%'
+}
 /* Clear floats after the columns */
 .row:after {
   content: "";
   display: table;
   clear: both;
 }
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+}
+
 
 .ContorllerTextBox {
   display: flex;
@@ -45,7 +59,7 @@
       .column {
     width: 50%;
   }
-  }
+  } 
   
   @media screen and (max-width: 600px) {
     .ContorllerTextBox {
@@ -61,7 +75,14 @@
 
     }
   
-    .column {
+  .column {
     width: 100%;
+    display: block;
+    margin-bottom: 20px;
   }
+
   }
+.day{
+  margin: 10px;
+  background-color: aqua;
+}
