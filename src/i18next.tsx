@@ -4,7 +4,6 @@ import translation from './language/en.json';
 
 import LanguageDetector from 'i18next-browser-languagedetector';
 i18next.use(initReactI18next).use(LanguageDetector).init({
-  lng: 'en', // if you're using a language detector, do not define the lng option
   debug: true,   
   interpolation: {
     escapeValue: true, // not needed for react as it escapes by default
