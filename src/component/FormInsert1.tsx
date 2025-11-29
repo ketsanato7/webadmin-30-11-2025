@@ -23,7 +23,6 @@ type FormWapperProps={
 export  default function FormWrapper({title,children}):FormWapperProps{
   const [open, setOpen] = React.useState(false);
 
-  const form1 = React.useRef();
 
   const handleClickOpenInsert = () => {
     setOpen(true);

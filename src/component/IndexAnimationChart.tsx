@@ -7,51 +7,41 @@ import Button from '@mui/material/Button';
 export default function ReactSpringAnimationCustomization() {
   const [key, animate] = React.useReducer((v) => v + 1, 0);
 
+  // ຂໍ້ມູນຍອດປ່ອຍກູ້ 5 ປີ
+  const years = ['2020', '2021', '2022', '2023', '2024'];
+  const loanData = [10, 30, 40, 150, 280]; // ປັບຕາມຂໍ້ມູນຈິງ
+
   return (
     <Stack>
+      
       <BarChart
         key={key}
-        xAxis={[{ data: ['A', 'B', 'C'] }]}
+        xAxis={[{ data: years }]}
         series={[
           {
             type: 'bar',
-            data: [5, 17, 11],
-          },
-          {
-            type: 'bar',
-            data: [0, 12, 15],
-          },
-          {
-            type: 'bar',
-            data: [1, 3, 9],
-          },
+            data: loanData,
+            label: 'ຍອດປ່ອຍກູ້ 5 ປິ ຍ້ອຍຫລັງ',
+          }
         ]}
-        width={300}
-        height={400}
         barLabel="value"
         slots={{ barLabel: AnimatedBarLabel }}
       />
-      <Button onClick={() => animate()}>Run Animation</Button>
+
+     
     </Stack>
   );
 }
 
 function AnimatedBarLabel(props) {
   const {
-    seriesId,
-    dataIndex,
     color,
-    isFaded,
-    isHighlighted,
-    classes,
     xOrigin,
     yOrigin,
     x,
     y,
     width,
     height,
-    layout,
-    skipAnimation,
     ...otherProps
   } = props;
 
@@ -64,7 +54,6 @@ function AnimatedBarLabel(props) {
   return (
     <animated.text
       {...otherProps}
-      // @ts-ignore
       fill={color}
       x={xOrigin + x + width / 2}
       width={width}

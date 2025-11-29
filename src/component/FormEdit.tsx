@@ -1,118 +1,56 @@
-import {ReactNode} from "react"
-import * as React from "react";
-import Dialog from "@mui/material/Dialog";
-import DialogContent from "@mui/material/DialogContent";
-import DialogTitle from "@mui/material/DialogTitle";
-import { Save, Cancel, Add, Clear } from "@mui/icons-material";
+// 📌 FormWrapper.tsx
+import React, { ReactNode, useState } from "react";
 import {
-  Button,
-  Stack,
+  Dialog,
+  DialogContent,
+  DialogTitle,
   IconButton,
+  Box,
 } from "@mui/material";
+import { Cancel, Edit } from "@mui/icons-material";
 import Dailog from "./dailog";
 
-import css from "../../src/style.module.css";
+type FormWrapperProps = {
+  title: string;
+  children: ReactNode;
+  onClose?: () => void;
+};
 
-import { ToastContainer, toast } from "react-toastify"; 
-type FormWapperProps={
-    title:string;
-    children:ReactNode
-}
-export default function FormWrapper({title,children}):FormWapperProps{
-  const [open, setOpen] = React.useState(false);
-
-  const form1 = React.useRef();
-
-  const handleClickOpenInsert = () => {
-    setOpen(true);
-  };
+export default function FormWrapper({ title, children, onClose }: FormWrapperProps) {
+  const [open, setOpen] = useState(false);
 
   const handleClose = () => {
     setOpen(false);
   };
-    return (
-        <>
-           <Button
-                variant="outlined"
-                sx={{ width: "10ch" }}
-                type="submit"
-                startIcon={<Add />}
-                onClick={handleClickOpenInsert}
-              >
-                Add
-              </Button>
-        
-              <Dialog
-                maxWidth="sx"
-                open={open}
-                onClose={handleClose}
-                PaperComponent={Dailog}
-                aria-labelledby="draggable-dialog-title"
-              >
-                <DialogTitle style={{ cursor: "move" }} id="draggable-dialog-title">
-      Insert  {title}
-                </DialogTitle>
-                <IconButton
-                  aria-label="fingerprint"
-                  color="error"
-                  onClick={handleClose}
-                  sx={(theme) => ({
-                    position: "absolute",
-                    right: 8,
-                    top: 8,
-                    color: theme.palette.grey[500],
-                  })}
-                >
-                  <Cancel />
-                </IconButton>
-                <DialogContent dividers>
- <Stack
-              spacing={{ xs: 1, sm: 1, p: 1 }}
-              direction="row"
-              useFlexGap
-              sx={{ flexWrap: "wrap" }}
-            >
 
+  return (
+    <>
+      <IconButton color="info" onClick={() => setOpen(true)} >
+        <Edit />
+      </IconButton>
 
+      <Dialog
+        maxWidth="sm"
+        open={open}
+        onClose={onClose || handleClose}
+        PaperComponent={Dailog}
+      >
+        <DialogTitle id="draggable-dialog-title" sx={{ cursor: "move" }}>
+          {title}
+        </DialogTitle>
 
-        {children}
-           
+        <IconButton
+          color="error"
+          onClick={handleClose}
+          sx={{ position: "absolute", right: 8, top: 8 }}
+        >
+          <Cancel />
+        </IconButton>
 
-
-
-
-                    </Stack>
-                    <br />
-        
-                    <Stack
-                      spacing={{ xs: 1, sm: 1, p: 1 }}
-                      direction="row"
-                      useFlexGap
-                      sx={{ flexWrap: "wrap", justifyContent: "center" }}
-                      className={css.ContorllerTexBox}
-                    >
-                      <Button
-                        variant="contained"
-                        sx={{ width: "25ch" }}
-                        type="submit"
-                        startIcon={<Save />}
-                      >
-                        Insert
-                      </Button>
-                      <Button
-                        variant="contained"
-                        sx={{ width: "25ch" }}
-                        startIcon={<Clear />}
-                        type="reset"
-                      >
-                        Clear
-                      </Button>
-                    </Stack>
-                </DialogContent>
-              </Dialog>
-              <ToastContainer />
-        
-        </>
-    )
-
+        <DialogContent dividers>
+          <Box>{children}</Box>
+        </DialogContent>
+      </Dialog>
+    </>
+  );
 }

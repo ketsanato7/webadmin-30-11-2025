@@ -1,112 +1,60 @@
-import {ReactNode} from "react"
-import * as React from "react";
-import Dialog from "@mui/material/Dialog";
-import DialogContent from "@mui/material/DialogContent";
-import DialogTitle from "@mui/material/DialogTitle";
-import { Save, Cancel, Add, Clear } from "@mui/icons-material";
+import React, { ReactNode, useState } from "react";
 import {
-  Button,
-  Stack,
+  Dialog,
+  DialogContent,
+  DialogTitle,
   IconButton,
-} from "@mui/material";
+  Box,
+} from "@mui/material"; 
+import { Cancel ,Delete} from "@mui/icons-material";
+import { ToastContainer } from "react-toastify";
 import Dailog from "./dailog";
 
-import css from "../../src/style.module.css";
+type FormWrapperProps = {
+  title: string;
+  children: ReactNode;
+};
 
-import { ToastContainer, toast } from "react-toastify"; 
-type FormWapperProps={
-    title:string;
-    children:ReactNode
-}
-export default function FormWrapper({title,children}):FormWapperProps{
-  const [open, setOpen] = React.useState(false);
+export default function FormWrapper({ title, children }: FormWrapperProps) {
+  const [open, setOpen] = useState(false);
 
-  const form1 = React.useRef();
+  return (
+    <>
 
-  const handleClickOpenInsert = () => {
-    setOpen(true);
-  };
+      <>      <IconButton color="error" onClick={() => setOpen(true)} >
+        <Delete />
+      </IconButton>
+      </>
+      <Dialog
+        maxWidth="sm"
+        open={open}
+        onClose={() => setOpen(false)}
+        PaperComponent={Dailog}
+        aria-labelledby="draggable-dialog-title"
+      >
+        <DialogTitle style={{ cursor: "move" }} id="draggable-dialog-title">
+        Delete  {title}
+        </DialogTitle>
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-    return (
-        <>
-   <IconButton aria-label="fingerprint" color='error' onClick={handleClickOpenInsert}>
-              <Delete />
-            </IconButton>
+        <IconButton
+          color="error"
+          onClick={() => setOpen(false)}
+          sx={(theme) => ({
+            position: "absolute",
+            right: 8,
+            top: 8,
+            color: theme.palette.grey[500],
+          })}
+        >
+          <Cancel />
+        </IconButton>
 
-              <Dialog
-                maxWidth="sx"
-                open={open}
-                onClose={handleClose}
-                PaperComponent={Dailog}
-                aria-labelledby="draggable-dialog-title"
-              >
-                <DialogTitle style={{ cursor: "move" }} id="draggable-dialog-title">
-      Insert  {title}
-                </DialogTitle>
-                <IconButton
-                  aria-label="fingerprint"
-                  color="error"
-                  onClick={handleClose}
-                  sx={(theme) => ({
-                    position: "absolute",
-                    right: 8,
-                    top: 8,
-                    color: theme.palette.grey[500],
-                  })}
-                >
-                  <Cancel />
-                </IconButton>
-                <DialogContent dividers>
- <Stack
-              spacing={{ xs: 1, sm: 1, p: 1 }}
-              direction="row"
-              useFlexGap
-              sx={{ flexWrap: "wrap" }}
-            >
+        <DialogContent dividers>
+          <Box>{children}</Box>
+        </DialogContent>
+      </Dialog>
 
-
-
-        {children}
-           
-
-
-
-
-                    </Stack>
-                    <br />
-        
-                    <Stack
-                      spacing={{ xs: 1, sm: 1, p: 1 }}
-                      direction="row"
-                      useFlexGap
-                      sx={{ flexWrap: "wrap", justifyContent: "center" }}
-                      className={css.ContorllerTexBox}
-                    >
-                      <Button
-                        variant="contained"
-                        sx={{ width: "25ch" }}
-                        type="submit"
-                        startIcon={<Save />}
-                      >
-                        Insert
-                      </Button>
-                      <Button
-                        variant="contained"
-                        sx={{ width: "25ch" }}
-                        startIcon={<Clear />}
-                        type="reset"
-                      >
-                        Clear
-                      </Button>
-                    </Stack>
-                </DialogContent>
-              </Dialog>
-              <ToastContainer />
-        
-        </>
-    )
-
+      <ToastContainer />
+    </>
+  );
 }

@@ -12,6 +12,7 @@ export  default function PaperComponent(props) {
       handle="#draggable-dialog-title"
       cancel={'[class*="MuiDialogContent-root"]'}
     >
+      
       <Paper {...props} ref={nodeRef} />
       
     </Draggable>
